@@ -7,6 +7,7 @@ namespace Library_Management_System
 {
     public interface IBookCatalogue
     {
-        void ViewAllBooks();
+        void ViewBookCatalogue();
+        void AddBook(Book book);
     }
 }

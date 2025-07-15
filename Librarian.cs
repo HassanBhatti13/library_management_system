@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Library_Management_System
 {
-    public class Librarian : Person
+    public class Librarian : Person , IBookCatalogue 
     {
         private IBookCatalogue catalogue;
-
+        private List<Book> book = new List<Book>();
         public Librarian(string name, int id, IBookCatalogue catalogue) : base(name, id)
         {
             this.catalogue = catalogue;
@@ -57,7 +57,7 @@ namespace Library_Management_System
             }
         }
 
-        public void ViewAllBooks()
+        public void ViewBookCatalogue()
         {
             for (int i = 0; i < catalogue.Count; i++)
             {

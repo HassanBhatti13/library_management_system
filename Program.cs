@@ -89,6 +89,7 @@ void LibrarianMenu(Library library)
 void MemberMenu(Library library)
 {
     Member member = new Member("Ali", 102, library);
+    // Book newBook = new Book();
 
     bool KeepRunning = true;
     while (KeepRunning)
@@ -120,6 +121,7 @@ void MemberMenu(Library library)
                 break;
 
             case "3":
+                member.BorrowBook();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
@@ -130,6 +132,7 @@ void MemberMenu(Library library)
                 break;
 
             case "5":
+                member.ViewBorrowedBooks();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;

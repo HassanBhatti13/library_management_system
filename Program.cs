@@ -62,13 +62,13 @@ void LibrarianMenu()
                 break;
 
             case "2":
-                librarian.RemoveBook();
+                // librarian.RemoveBook();
                 Console.WriteLine("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
             case "3":
-                librarian.ViewAllBooks();
+                // librarian.ViewAllBooks();
                 Console.WriteLine("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
@@ -108,7 +108,7 @@ void MemberMenu()
             break;
 
         case "2":
-            member.ViewAllBooks();
+            // member.ViewAllBooks();
             Console.WriteLine("\nPress enter to continue...");
             Console.ReadLine();
             break;

@@ -7,25 +7,29 @@ using Microsoft.VisualBasic;
 
 namespace Library_Management_System
 {
-    public class Member : Person
+    public class Member : Person, IBookCatalogue
     {
         private IBookCatalogue catalogue;
 
-        public Member(string name, int id, IBookCatalogue catalogue) : base(name, id)
+        public Member(string name, int id) : base(name, id)
         {
-            this.catalogue = catalogue;
+            // this.catalogue = catalogue;
         }
-        public void ViewAllBooks()
+        public void ViewBookCatalogue()
         {
-            List<Book> books = catalogue.GetCatalogue();
-            for (int i = 0; i < books.Count; i++)
-            {
-                Console.WriteLine("\nBook " + (i + 1) + ":");
-                Console.WriteLine("Title: " + books[i].title);
-                Console.WriteLine("Author: " + books[i].author);
-                Console.WriteLine("ISBN: " + books[i].isbn);
-                Console.WriteLine();
-            }
+            // List<Book> books = catalogue.GetCatalogue();
+            // for (int i = 0; i < books.Count; i++)
+            // {
+            //     Console.WriteLine("\nBook " + (i + 1) + ":");
+            //     Console.WriteLine("Title: " + books[i].title);
+            //     Console.WriteLine("Author: " + books[i].author);
+            //     Console.WriteLine("ISBN: " + books[i].isbn);
+            //     Console.WriteLine();
+            // }
+        }
+        public void AddBook(Book book)
+        {
+            
         }
         public void BorrowBook()
         {

@@ -63,7 +63,7 @@ void LibrarianMenu(Library library)
                 break;
 
             case "2":
-                librarian.RemoveBook(newBook);
+                librarian.RemoveBook();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;

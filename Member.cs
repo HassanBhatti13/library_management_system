@@ -7,10 +7,8 @@ using Microsoft.VisualBasic;
 
 namespace Library_Management_System
 {
-    public class Member : Person, IBookCatalogue
+    public class Member : Person 
     {
-        private IBookCatalogue catalogue;
-
         public Member(string name, int id) : base(name, id)
         {
             // this.catalogue = catalogue;

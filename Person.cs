@@ -7,8 +7,8 @@ namespace Library_Management_System
 {
     public abstract class Person
     {
-        public string Name { get; set; }
-        public int ID { get; set; }
+        private string Name { get; set; }
+        private int ID { get; set; }
         public Person(string name, int id)
         {
             Name = name;

@@ -38,7 +38,7 @@ namespace Library_Management_System
             Console.WriteLine("\nBook added successfully!");
         }
 
-        public void RemoveBook(Book book)
+        public void RemoveBook()
         {
             Console.Clear();
             Console.WriteLine("\n=== Remove books by Title or ISBN ===");

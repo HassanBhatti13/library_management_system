@@ -2,9 +2,10 @@
 
 using Library_Management_System;
 
-MainMenu();
+Library library = new Library(); //Created a Library instance
+MainMenu(library);               
 
-void MainMenu()
+void MainMenu(Library library)
 {
     Console.WriteLine("\nWelcome to Library!");
     Console.WriteLine("1. Librarian");
@@ -17,7 +18,7 @@ void MainMenu()
     switch (input)
     {
         case "1":
-            LibrarianMenu();
+            LibrarianMenu(library);         // passed Library instance to the Librarian
 
             break;
 
@@ -33,10 +34,10 @@ void MainMenu()
     }
 }
 
-void LibrarianMenu()
+void LibrarianMenu(Library library)
 
 {
-    Librarian librarian = new Librarian("Hassan", 101);
+    Librarian librarian = new Librarian("Hassan", 101, library);
     bool KeepRunning = true;
     while (KeepRunning)
     {
@@ -51,7 +52,7 @@ void LibrarianMenu()
         string LibrarianMenuInput = Console.ReadLine();
 
 
-        Book newBook = new Book();
+        Book newBook = new Book(); //I create a new instance of Book i.e newBook then pass it to AddBook(), BUT the book isn't stored anywhere!
 
         switch (LibrarianMenuInput)
         {
@@ -62,7 +63,7 @@ void LibrarianMenu()
                 break;
 
             case "2":
-                // librarian.RemoveBook();
+                librarian.RemoveBook(newBook);
                 Console.WriteLine("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
@@ -76,7 +77,7 @@ void LibrarianMenu()
             case "4":
                 KeepRunning = false;
                 Console.Clear();
-                MainMenu();
+                MainMenu(library);
                 break;
 
             default:

@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace Library_Management_System
 {
-    public class Librarian : Person , IBookCatalogue 
+    public class Librarian : Person  
     {
-        private IBookCatalogue catalogue;
-        private List<Book> book = new List<Book>();
-        public Librarian(string name, int id) : base(name, id)
+        // private IBookCatalogue catalogue; //This is declared but NOT initialized!
+        // private List<Book> book = new List<Book>(); //In my current logic, I am NOT adding book to this list!
+
+        private Library _library;
+        public Librarian(string name, int id, Library library) : base(name, id)
         {
+            _library = library;
         }
 
         public void AddBook(Book book)
@@ -26,9 +29,11 @@ namespace Library_Management_System
             book.author = Console.ReadLine();
 
             Console.Write("Enter book ISBN: ");
-            book.isbn = Convert.ToInt32(Console.ReadLine());
+            book.isbn = Convert.ToInt64(Console.ReadLine());
 
-            catalogue.AddBook(book);
+            book.isAvailable = true;                // New books are available by default
+
+            _library.AddBook(book);
             Console.WriteLine("\nBook added successfully!");
         }
 
@@ -38,8 +43,27 @@ namespace Library_Management_System
             Console.WriteLine("\nRemove books by Title or ISBN: ");
             Console.Write("Enter Title or ISBN: ");
             string query = Console.ReadLine();
-            
 
+            Book bookToRemove = null;
+
+            if (long.TryParse(query, out long isbn))
+            {
+                bookToRemove = _library.Books.FirstOrDefault(b => b.isbn == isbn);
+            }
+            else
+            {
+                bookToRemove = _library.Books.FirstOrDefault(b => b.title.Equals(query, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (bookToRemove != null)
+            {
+                _library.Books.Remove(bookToRemove);
+                Console.WriteLine("\nBook removed successfully!");
+            }
+            else
+            {
+                Console.WriteLine("\nBook not found!");
+            }
 
     //         catalogue = catalogue.Where(b => b.Title != book.Title || b.Author != book.Author || b.ISBN != book.ISBN).ToList();
 

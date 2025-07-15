@@ -58,19 +58,19 @@ void LibrarianMenu(Library library)
         {
             case "1":
                 librarian.AddBook(newBook);
-                Console.WriteLine("\nPress enter to continue...");
+                Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
             case "2":
                 librarian.RemoveBook(newBook);
-                Console.WriteLine("\nPress enter to continue...");
+                Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
             case "3":
                 librarian.ViewBookCatalogue();
-                Console.WriteLine("\nPress enter to continue...");
+                Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
@@ -110,7 +110,7 @@ void MemberMenu()
 
         case "2":
             // member.ViewAllBooks();
-            Console.WriteLine("\nPress enter to continue...");
+            Console.Write("\nPress enter to continue...");
             Console.ReadLine();
             break;
     }

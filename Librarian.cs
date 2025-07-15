@@ -20,7 +20,8 @@ namespace Library_Management_System
 
         public void AddBook(Book book)
         {
-            Console.WriteLine("\nAdd new book:\n");
+            Console.Clear();
+            Console.WriteLine("\n=== Add new book=== \n");
 
             Console.Write("Enter book title: ");
             book.Title = Console.ReadLine();
@@ -70,16 +71,16 @@ namespace Library_Management_System
         public void ViewBookCatalogue()
         {
             Console.Clear();
-            Console.WriteLine("\n=== Library Book Catalogue ===");
+            Console.WriteLine("\n=== Library Book Catalogue ===\n");
             if (_library.Books.Count == 0)
             {
-                Console.WriteLine("\nNo books available.");
+                Console.WriteLine("No books available.");
             }
             else
             {
                 foreach (var book in _library.Books)
                 {
-                    Console.WriteLine($"\nTitle: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
+                    Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
                 }
             }
         }

@@ -39,9 +39,10 @@ namespace Library_Management_System
 
         public void RemoveBook(Book book)
         {
+            Console.Clear();
+            Console.WriteLine("\n=== Remove books by Title or ISBN ===");
 
-            Console.WriteLine("\nRemove books by Title or ISBN: ");
-            Console.Write("Enter Title or ISBN: ");
+            Console.Write("\nEnter Title or ISBN: ");
             string query = Console.ReadLine();
 
             Book bookToRemove = null;
@@ -68,16 +69,17 @@ namespace Library_Management_System
 
         public void ViewBookCatalogue()
         {
-            Console.WriteLine("\nLibrary Book Catalogue:");
+            Console.Clear();
+            Console.WriteLine("\n=== Library Book Catalogue ===");
             if (_library.Books.Count == 0)
             {
-                Console.WriteLine("No books available.");
+                Console.WriteLine("\nNo books available.");
             }
             else
             {
                 foreach (var book in _library.Books)
                 {
-                    Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
+                    Console.WriteLine($"\nTitle: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
                 }
             }
         }

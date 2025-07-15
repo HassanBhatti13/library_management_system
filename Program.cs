@@ -69,7 +69,7 @@ void LibrarianMenu(Library library)
                 break;
 
             case "3":
-                // librarian.ViewAllBooks();
+                librarian.ViewBookCatalogue();
                 Console.WriteLine("\nPress enter to continue...");
                 Console.ReadLine();
                 break;

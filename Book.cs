@@ -9,31 +9,45 @@ namespace Library_Management_System
 {
     public class Book
     {
-        private string Title;
-        private string Author;
-        private long ISBN;
-        private bool IsAvailable;
+        public string Title;
+        public string Author;
+        public long ISBN;
+        public bool IsAvailable;
 
-        public string title { get; set; }
-        public string author { get; set; }
-        public long isbn { get; set; }
-        public bool isAvailable { get; set; }
+        // public string title { get; set; }
+        // public string author { get; set; }
+        // public long isbn { get; set; }
+        // public bool isAvailable { get; set; }
 
         public Book()
         {
-            Title = title;
-            Author = author;
-            ISBN = isbn;
-            IsAvailable = isAvailable;
+            IsAvailable = true;
         }
 
         public void Borrow()
         {
+            if (IsAvailable)
+            {
+                IsAvailable = false;
+                Console.WriteLine($"Book '{Title} borrowed successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"Book '{Title} is not available.");
+            }
 
         }
         public void Return()
         {
-            
+            if (!IsAvailable)
+            {
+                IsAvailable = true;
+                Console.WriteLine($"Book '{Title}' returned successfully.");
+            }
+            else
+            {
+                Console.WriteLine($"Book '{Title}' was not borrowed.");
+            }
         }
     }
 }

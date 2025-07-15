@@ -23,15 +23,15 @@ namespace Library_Management_System
             Console.WriteLine("\nAdd new book:\n");
 
             Console.Write("Enter book title: ");
-            book.title = Console.ReadLine();
+            book.Title = Console.ReadLine();
 
             Console.Write("Enter author name: ");
-            book.author = Console.ReadLine();
+            book.Author = Console.ReadLine();
 
             Console.Write("Enter book ISBN: ");
-            book.isbn = Convert.ToInt64(Console.ReadLine());
+            book.ISBN = Convert.ToInt64(Console.ReadLine());
 
-            book.isAvailable = true;                // New books are available by default
+            book.IsAvailable = true;                // New books are available by default
 
             _library.AddBook(book);
             Console.WriteLine("\nBook added successfully!");
@@ -48,11 +48,11 @@ namespace Library_Management_System
 
             if (long.TryParse(query, out long isbn))
             {
-                bookToRemove = _library.Books.FirstOrDefault(b => b.isbn == isbn);
+                bookToRemove = _library.Books.FirstOrDefault(b => b.ISBN == isbn);
             }
             else
             {
-                bookToRemove = _library.Books.FirstOrDefault(b => b.title.Equals(query, StringComparison.OrdinalIgnoreCase));
+                bookToRemove = _library.Books.FirstOrDefault(b => b.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
             }
 
             if (bookToRemove != null)
@@ -64,34 +64,22 @@ namespace Library_Management_System
             {
                 Console.WriteLine("\nBook not found!");
             }
-
-    //         catalogue = catalogue.Where(b => b.Title != book.Title || b.Author != book.Author || b.ISBN != book.ISBN).ToList();
-
-            //         var catalogueList = catalogue;
-            //         var bookToRemove = catalogueList.FirstOrDefault (b => b.Title == book.Title && b.Author == book.Author && b.ISBN == book.ISBN);
-
-            //          if  (bookToRemove != null)
-            // {
-            //             catalogue.Remove(bookToRemove);
-            //             Console.WriteLine("Book removed successfully!");
-            //         }
-
-            //         else
-            //         {
-            //             Console.WriteLine("Book not found!");
-            //         }
         }
 
         public void ViewBookCatalogue()
         {
-            // for (int i = 0; i < catalogue.Count; i++)
-            // {
-            //     Console.WriteLine("\nBook " + (i + 1) + ":");
-            //     Console.WriteLine("Title: " + catalogue[i].title);
-            //     Console.WriteLine("Author: " + catalogue[i].author);
-            //     Console.WriteLine("ISBN: " + catalogue[i].isbn);
-            //     Console.WriteLine();
-            // }
+            Console.WriteLine("\nLibrary Book Catalogue:");
+            if (_library.Books.Count = 0)
+            {
+                Console.WriteLine("No books available.");
+            }
+            else
+            {
+                foreach (var book in _library.Books)
+                {
+                    Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
+                }
+            }
         }
     }
 }

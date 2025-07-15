@@ -9,21 +9,26 @@ namespace Library_Management_System
 {
     public class Member : Person 
     {
-        public Member(string name, int id) : base(name, id)
+        private Library _mLibrary;
+        public Member(string name, int id, Library library1) : base(name, id)
         {
-            // this.catalogue = catalogue;
+            _mLibrary = library1;
         }
         public void ViewBookCatalogue()
         {
-            // List<Book> books = catalogue.GetCatalogue();
-            // for (int i = 0; i < books.Count; i++)
-            // {
-            //     Console.WriteLine("\nBook " + (i + 1) + ":");
-            //     Console.WriteLine("Title: " + books[i].title);
-            //     Console.WriteLine("Author: " + books[i].author);
-            //     Console.WriteLine("ISBN: " + books[i].isbn);
-            //     Console.WriteLine();
-            // }
+            Console.Clear();
+            Console.WriteLine("\n=== Library Book Catalogue ===\n");
+            if (_mLibrary.Books.Count == 0)
+            {
+                Console.WriteLine("No books available.");
+            }
+            else
+            {
+                foreach (var book in _mLibrary.Books)
+                {
+                    Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
+                }
+            }
         }
         public void AddBook(Book book)
         {

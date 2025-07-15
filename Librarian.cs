@@ -9,9 +9,6 @@ namespace Library_Management_System
 {
     public class Librarian : Person  
     {
-        // private IBookCatalogue catalogue; //This is declared but NOT initialized!
-        // private List<Book> book = new List<Book>(); //In my current logic, I am NOT adding book to this list!
-
         private Library _library;
         public Librarian(string name, int id, Library library) : base(name, id)
         {

@@ -19,11 +19,10 @@ void MainMenu(Library library)
     {
         case "1":
             LibrarianMenu(library);         // passed Library instance to the Librarian
-
             break;
 
         case "2":
-            MemberMenu();
+            MemberMenu(library);
             break;
 
         case "3":
@@ -87,31 +86,63 @@ void LibrarianMenu(Library library)
     }
 }
 
-void MemberMenu()
+void MemberMenu(Library library)
 {
-    Member member = new Member("Ali", 102);
+    Member member = new Member("Ali", 102, library);
 
-    Console.Clear();
-    Console.WriteLine("\nWelcome Member!");
-    Console.WriteLine("1. Register as a new member");
-    Console.WriteLine("2. View available books");
-    Console.WriteLine("3. Borrow a book");
-    Console.WriteLine("4. Return a book");
-    Console.WriteLine("5. View list of your borrowed books");
-    Console.WriteLine("6. Return to the Main Menu");
-
-    Console.Write("\nYour choice: ");
-    string MemberMenuInput = Console.ReadLine();
-
-    switch (MemberMenuInput)
+    bool KeepRunning = true;
+    while (KeepRunning)
     {
-        case "1":
-            break;
+        Console.Clear();
+        Console.WriteLine("\nWelcome Member!");
+        Console.WriteLine("1. Register as a new member");
+        Console.WriteLine("2. View available books");
+        Console.WriteLine("3. Borrow a book");
+        Console.WriteLine("4. Return a book");
+        Console.WriteLine("5. View list of your borrowed books");
+        Console.WriteLine("6. Return to the Main Menu");
 
-        case "2":
-            // member.ViewAllBooks();
-            Console.Write("\nPress enter to continue...");
-            Console.ReadLine();
-            break;
+        Console.Write("\nYour choice: ");
+        string MemberMenuInput = Console.ReadLine();
+
+        switch (MemberMenuInput)
+        {
+            case "1":
+                Console.WriteLine("\nFunction not yet programmed!");
+                Console.Write("\nPress enter to continue...");
+                Console.ReadLine();
+                break;
+
+            case "2":
+                member.ViewBookCatalogue();
+                Console.Write("\nPress enter to continue...");
+                Console.ReadLine();
+                break;
+
+            case "3":
+                Console.Write("\nPress enter to continue...");
+                Console.ReadLine();
+                break;
+
+            case "4":
+                Console.Write("\nPress enter to continue...");
+                Console.ReadLine();
+                break;
+
+            case "5":
+                Console.Write("\nPress enter to continue...");
+                Console.ReadLine();
+                break;
+
+            case "6":
+                KeepRunning = false;
+                Console.Clear();
+                MainMenu(library);
+                break;
+            
+            default:
+                Console.WriteLine("\nInvalid choice selection!");
+                break;
+        }
     }
 }

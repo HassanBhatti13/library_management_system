@@ -69,7 +69,7 @@ namespace Library_Management_System
         public void ViewBookCatalogue()
         {
             Console.WriteLine("\nLibrary Book Catalogue:");
-            if (_library.Books.Count = 0)
+            if (_library.Books.Count == 0)
             {
                 Console.WriteLine("No books available.");
             }

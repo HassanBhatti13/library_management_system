@@ -127,6 +127,7 @@ void MemberMenu(Library library)
                 break;
 
             case "4":
+                member.ReturnBook();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;

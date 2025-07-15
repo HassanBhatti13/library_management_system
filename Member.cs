@@ -35,7 +35,7 @@ namespace Library_Management_System
         public void BorrowBook()
         {
             Console.Clear();
-            Console.WriteLine("\n=== Enter the book details you want to borrow ===\n");
+            Console.WriteLine("\n=== Enter the book details you want to BORROW ===\n");
             Console.Write("Enter book Title or ISBN: ");
             string query = Console.ReadLine();
 
@@ -72,14 +72,47 @@ namespace Library_Management_System
                 }
             }
             
-
-
-            
         }
 
         public void ReturnBook()
         {
+            Console.Clear();
+            Console.WriteLine("\n=== Enter the book details you want to RETURN ===\n");
+            Console.Write("Enter book Title or ISBN: ");
+            string query = Console.ReadLine();
 
+            Book bookToReturn = null;
+             //Check book availability
+            if (_mLibrary.BorrowedBooks.Count == 0)
+            {
+                Console.WriteLine("\nYou have not borrowed any books!");
+            }
+            else
+            {
+                //Check if query matches the book title or isbn
+                if (long.TryParse(query, out long isbn))
+                {
+                    bookToReturn = _mLibrary.BorrowedBooks.FirstOrDefault(b => b.ISBN == isbn);
+                }
+                else
+                {
+                    bookToReturn = _mLibrary.BorrowedBooks.FirstOrDefault(b => b.Title.Equals(query, StringComparison.OrdinalIgnoreCase));
+                }
+
+                //Now logic of borrowing books
+                if (bookToReturn != null)
+                {
+                    _mLibrary.BorrowedBooks.Remove(bookToReturn); //This removes the book from BorrowedBooks list
+                    _mLibrary.Books.Add(bookToReturn);            // This Adds the book back to the Books list
+
+                    bookToReturn.IsAvailable = true; //This marks it as available once again
+                    Console.WriteLine("\nBook returned successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("\nBook not found!");
+                }
+            }
         }
 
         public void ViewBorrowedBooks()

@@ -23,18 +23,44 @@ namespace Library_Management_System
             Books.Add(book);
         }
 
-        public void BorrowBook(Book book) //
+        public void BorrowBook(Book book)
         {
-            BorrowedBooks.Add(book);  //
+            BorrowedBooks.Add(book);
+        }
+
+        public void AddMember(Member member)
+        {
+            Members.Add(member);
+        }
+
+        public void Login(Member member)
+        {
+
+        }
+
+        public void LoadMembersFromFile()
+        {
+            if (File.Exists("MemberInfo.txt"))
+            {
+                var lines = File.ReadAllLines("MemberInfo.txt");
+                foreach (var line in lines)
+                {
+                    var parts = line.Split(", ");
+                    string name = parts[0].Split(": ")[1]; // Extract name after "Name: "
+                    int id = int.Parse(parts[1].Split(": ")[1]); // Extract ID after "ID: "
+                    Members.Add(new Member(name, id, this));
+                }
+            }
         }
         
-        // public void AddMember()
-        // {
+        public Member FindMemberByName(string name)
+        {
+            return Members.FirstOrDefault(m => m.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
 
-        // }
-        // public void GetAvailableBooks()
-        // {
-
-        // }
+        public Member FindMemberById(int id)
+        {
+            return Members.FirstOrDefault(m => m.ID == id);
+        }
     }
 }

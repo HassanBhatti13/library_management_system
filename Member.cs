@@ -7,7 +7,7 @@ using Microsoft.VisualBasic;
 
 namespace Library_Management_System
 {
-    public class Member : Person 
+    public class Member : Person
     {
 
         private Library _mLibrary;
@@ -31,7 +31,7 @@ namespace Library_Management_System
                 }
             }
         }
-      
+
         public void BorrowBook()
         {
             Console.Clear();
@@ -71,7 +71,7 @@ namespace Library_Management_System
                     Console.WriteLine("\nBook not found!");
                 }
             }
-            
+
         }
 
         public void ReturnBook()
@@ -82,7 +82,7 @@ namespace Library_Management_System
             string query = Console.ReadLine();
 
             Book bookToReturn = null;
-             //Check book availability
+            //Check book availability
             if (_mLibrary.BorrowedBooks.Count == 0)
             {
                 Console.WriteLine("\nYou have not borrowed any books!");
@@ -130,6 +130,33 @@ namespace Library_Management_System
                     Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {(book.IsAvailable ? "Yes" : "No")}");
                 }
             }
+        }
+
+        public void AddMember()
+        {
+            Member member = null;
+            
+            Console.Clear();
+            Console.WriteLine("\n=== Register new member ===\n");
+            Console.Write("Enter Name: ");
+            string newName = Console.ReadLine();
+
+            Console.Write("Enter ID: ");
+            int newID = Convert.ToInt32(Console.ReadLine());
+
+            member = new Member(newName, newID, _mLibrary); //This passes the fields to member constructor
+            _mLibrary.Members.Add(member); //This adds the member to the Members list
+
+
+            Console.WriteLine("\n=== New Member created successfully! ===\n");
+            Console.WriteLine($"Name: {newName}, ID: {newID}");
+
+            //Write to file logic below here, assume there is a MemberInfo.txt file in the directory
+            using (StreamWriter writer = new StreamWriter("MemberInfo.txt", true))
+            {
+                writer.WriteLine($"Name: {newName}, ID: {newID}");
+            }
+
         }
     }
 }

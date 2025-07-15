@@ -3,6 +3,8 @@
 using Library_Management_System;
 
 Library library = new Library(); //Created a Library instance
+library.LoadMembersFromFile(); // Load members from file
+
 MainMenu(library);               
 
 void MainMenu(Library library)
@@ -22,10 +24,11 @@ void MainMenu(Library library)
             break;
 
         case "2":
-            MemberMenu(library);
+            MemberLogin(library);
             break;
 
         case "3":
+            Console.Write("\nExiting the program...\n");
             break;
 
         default:
@@ -51,7 +54,7 @@ void LibrarianMenu(Library library)
         string LibrarianMenuInput = Console.ReadLine();
 
 
-        Book newBook = new Book(); //I create a new instance of Book i.e newBook then pass it to AddBook(), BUT the book isn't stored anywhere!
+        Book newBook = new Book(); //Created a Book instance
 
         switch (LibrarianMenuInput)
         {
@@ -86,22 +89,22 @@ void LibrarianMenu(Library library)
     }
 }
 
+
+
 void MemberMenu(Library library)
 {
     Member member = new Member("Ali", 102, library);
-    // Book newBook = new Book();
 
     bool KeepRunning = true;
     while (KeepRunning)
     {
         Console.Clear();
-        Console.WriteLine("\nWelcome Member!");
-        Console.WriteLine("1. Register as a new member");
-        Console.WriteLine("2. View available books");
-        Console.WriteLine("3. Borrow a book");
-        Console.WriteLine("4. Return a book");
-        Console.WriteLine("5. View list of your borrowed books");
-        Console.WriteLine("6. Return to the Main Menu");
+        Console.WriteLine($"\nWelcome Member!");
+        Console.WriteLine("1. View available books");
+        Console.WriteLine("2. Borrow a book");
+        Console.WriteLine("3. Return a book");
+        Console.WriteLine("4. View list of your borrowed books");
+        Console.WriteLine("5. Return to the Main Menu");
 
         Console.Write("\nYour choice: ");
         string MemberMenuInput = Console.ReadLine();
@@ -109,36 +112,30 @@ void MemberMenu(Library library)
         switch (MemberMenuInput)
         {
             case "1":
-                Console.WriteLine("\nFunction not yet programmed!");
-                Console.Write("\nPress enter to continue...");
-                Console.ReadLine();
-                break;
-
-            case "2":
                 member.ViewBookCatalogue();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
-            case "3":
+            case "2":
                 member.BorrowBook();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
-            case "4":
+            case "3":
                 member.ReturnBook();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
-            case "5":
+            case "4":
                 member.ViewBorrowedBooks();
                 Console.Write("\nPress enter to continue...");
                 Console.ReadLine();
                 break;
 
-            case "6":
+            case "5":
                 KeepRunning = false;
                 Console.Clear();
                 MainMenu(library);

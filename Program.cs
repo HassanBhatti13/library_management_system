@@ -89,7 +89,83 @@ void LibrarianMenu(Library library)
     }
 }
 
+void MemberLogin(Library library)
+{
+    Console.Clear();
+    Console.WriteLine("\n=== Welcome to Library ===\n");
+    Console.WriteLine("1. Login");
+    Console.WriteLine("2. Register yourself as new member");
 
+    Console.Write("\nYour choice: ");
+    string MemberLoginInput = Console.ReadLine();
+    
+        switch (MemberLoginInput)
+        {
+            case "1":
+            //Login logic here
+            
+            Console.WriteLine("Choose login method:");
+            Console.WriteLine("1. By Name");
+            Console.WriteLine("2. By ID");
+            string choice = Console.ReadLine();
+
+                Member loggedInMember = null;
+                if (choice == "1")
+                {
+                    Console.Write("Enter your name: ");
+                    string name = Console.ReadLine();
+                    loggedInMember = library.FindMemberByName(name);
+                }
+                else if (choice == "2")
+                {
+                    Console.Write("Enter your ID: ");
+                    if (int.TryParse(Console.ReadLine(), out int id))
+                    {
+                        loggedInMember = library.FindMemberById(id);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid ID format.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice.");
+                }
+
+                if (loggedInMember != null)
+                {
+                    Console.WriteLine($"Welcome {loggedInMember.Name}!");
+                    // Optionally proceed to a member menu: MemberMenu(library, loggedInMember);
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect Credentials!");
+                }
+
+
+            Console.Write("\nPress enter to continue...");
+            Console.ReadLine();
+            MemberMenu(library);
+
+            break;
+
+        case "2":
+            //Register logic here, then once again show MemberLogin page so they can login by new credentials 
+
+            Member tempMember = new Member("temp", 0, library); //Dummy values
+            tempMember.AddMember();
+            Console.Write("\nPress enter to continue...");
+            Console.ReadLine();
+            MemberLogin(library);
+            // MemberMenu(library);
+            break;
+
+        default:
+            Console.WriteLine("\nInvalid choice selection!");
+            break;
+    }
+}
 
 void MemberMenu(Library library)
 {

@@ -9,15 +9,10 @@ namespace Library_Management_System
 {
     public class Book
     {
-        public string Title;
-        public string Author;
-        public long ISBN;
-        public bool IsAvailable;
-
-        // public string title { get; set; }
-        // public string author { get; set; }
-        // public long isbn { get; set; }
-        // public bool isAvailable { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public long ISBN { get; set; }
+        public bool IsAvailable { get; set; }
 
         public Book()
         {
@@ -49,5 +44,7 @@ namespace Library_Management_System
                 Console.WriteLine($"Book '{Title}' was not borrowed.");
             }
         }
+
+       
     }
 }

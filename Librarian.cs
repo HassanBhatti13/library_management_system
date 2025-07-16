@@ -33,6 +33,11 @@ namespace Library_Management_System
 
             _library.AddBook(book);
             Console.WriteLine("\nBook added successfully!");
+
+            using (StreamWriter writer = new StreamWriter("Books.txt", true))
+            {
+                writer.WriteLine($"Title: {book.Title}, Author: {book.Author}, ISBN: {book.ISBN}, Available: {book.IsAvailable}");
+            }
         }
 
         public void RemoveBook()
@@ -58,6 +63,36 @@ namespace Library_Management_System
             {
                 _library.Books.Remove(bookToRemove);
                 Console.WriteLine("\nBook removed successfully!");
+
+            // Update Books.txt by removing the book's entry
+            if (File.Exists("Books.txt"))
+            {
+                try
+                {
+                    
+                    var lines = File.ReadAllLines("Books.txt").ToList(); // Read all lines from the file
+                    
+                    var updatedLines = lines.Where(line => // Filter out the line matching the book to remove
+                    {
+                        var parts = line.Split(", ");
+                        if (parts.Length >= 3)
+                        {
+                            string title = parts[0].Split(": ")[1];
+                            long isbnFromFile = long.Parse(parts[2].Split(": ")[1]);
+                            return !(title.Equals(bookToRemove.Title, StringComparison.OrdinalIgnoreCase) || isbnFromFile == bookToRemove.ISBN);
+                        }
+                        return true; // Keep lines that don't match the format
+                    }).ToList();
+
+                    // Write the updated lines back to the file
+                    File.WriteAllLines("Books.txt", updatedLines);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error updating Books.txt: {ex.Message}");
+                }
+            }
+        
             }
             else
             {

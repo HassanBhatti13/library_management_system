@@ -2,8 +2,9 @@
 
 using Library_Management_System;
 
-Library library = new Library(); //Created a Library instance
-library.LoadMembersFromFile(); // Load members from file
+Library library = new Library(); // Created a Library instance
+library.LoadBooksFromFile();     // Load books from file
+library.LoadMembersFromFile();   // Load members from file
 
 MainMenu(library);               
 
@@ -103,16 +104,18 @@ void MemberLogin(Library library)
         {
             case "1":
             //Login logic here
-            
-            Console.WriteLine("Choose login method:");
+            Console.Clear();
+            Console.WriteLine("\n=== Choose login method ===\n");
             Console.WriteLine("1. By Name");
             Console.WriteLine("2. By ID");
+
+            Console.Write("\nYour choice: ");   
             string choice = Console.ReadLine();
 
                 Member loggedInMember = null;
                 if (choice == "1")
                 {
-                    Console.Write("Enter your name: ");
+                    Console.Write("\nEnter your name: ");
                     string name = Console.ReadLine();
                     loggedInMember = library.FindMemberByName(name);
                 }
@@ -135,8 +138,8 @@ void MemberLogin(Library library)
 
                 if (loggedInMember != null)
                 {
-                    Console.WriteLine($"Welcome {loggedInMember.Name}!");
-                    // Optionally proceed to a member menu: MemberMenu(library, loggedInMember);
+                    Console.Clear();
+                    Console.WriteLine($"\n=== Welcome {loggedInMember.Name}! ===\n");
                 }
                 else
                 {
